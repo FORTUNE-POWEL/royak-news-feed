@@ -1,0 +1,25 @@
+.index_article1_a12 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.index_article1_a12>div:first-child {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.index_article1_a12>div:first-child>div:first-child {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.index_article1 {
+    padding: 20px
+}
+
+p {
+    font-size: small;
+}

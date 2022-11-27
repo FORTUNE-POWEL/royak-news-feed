@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel='shortcut icon' type='image/x-icon' href='imgs/favicon.ico' />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <title>Royal Gospel Music | You Want It, We Got It</title>
+    <link rel="stylesheet" type="text/css" href="pearl2.css">
+    <link rel="stylesheet" type="text/css" href="awards.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.1.9/sweetalert2.min.js" integrity="sha512-I/i/QdEAXhCk1O0kmm/I/qf5nwNRv5fYAlnWVZRd+dAfYgZAKeIrIy7vlr6J1di+HauR+5bzS6m/iHoR8xRYCA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.1.9/sweetalert2.css" integrity="sha512-NIcYVd9x+7QWzVOrAepi4tT6Y17n9yiq7Jzc4T6FfSXPiI/+oB1j298Hufjj+Hr/9tjz9p0mSolx/OBRVPStLw==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+
+    <!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CHEK379PB8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-CHEK379PB8');
+    </script>
+   
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container mb-4">
+                <a class="navbar-brand" href="index.html">
+                    <img src="imgs/rgm_logo.png" style="width:50px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars" style="color: white;"></i>
+            </button>
+
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                         <li class="nav-item">
+                            <a style="color:#FBD263;" class="nav-link" href="awards.html">Awards</a>
+                        </li>
+                        <!--<li class="nav-item">-->
+                        <!--    <a class="nav-link" href="index.html">Download</a>-->
+                        <!--</li>-->
+                        <li class="nav-item">
+                            <a class="nav-link" href="radio.html">Radio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Events</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <article>
+            <section>
+                <div class="index_article1">
+                    <!--<h5 class="text-center mb-4" style="color: #FFEDBF;">Royal Gospel Music Awards</h5>-->
+                    <div class="text-center mb-3 ">
+                        <img class="rgma_img" src="imgs/rgma_logo.png">
+                    </div>
+
+                    <span id="all_categories"></span>
+                    <div id="category_spinner">
+                        <div class="spinner-border text-primary text-center" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+
+                    <div id="vote_button" style="display: none;">
+                        <button onclick="checkVote()" class="btn btn-lg  download-btn">
+                                            Vote
+                                        </button>
+
+                        <span id="trigger_vote" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat" hidden></span>
+
+                    </div>
+                </div>
+            </section>
+        </article>
+
+
+
+
+
+
+
+
+        <!-- Modal for mobile money -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document" style="display: flex; align-items: center; justify-content: center;">
+                <div class="modal-content" style="background-color:#050239; border: 0.01rem solid #FAD985; border-radius: 20px; margin:10px !important;">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span style ="color:burlywood"aria-hidden="true">&times;</span>
+                  </button>
+                    </div>
+                    <div class="modal-body" id="modal-body">
+                        <section>
+                            <div class="text-center mb-4 mt-2" style="">
+                                <img src="imgs/rgm_logo.png" width=40px>
+                                <br>
+                                <span style="text-align:center !important;" class="modal-title text-center" id="exampleModalLabel">
+                                <small id="voting-text" style="color:#FAF1DA">
+                                    Voting costs UGX 500 only
+                                </small>
+                            </span>
+                            </div>
+                        </section>
+
+                        <section>
+                            <div class="mb-5" style="">
+                                <h2 class="text-center" style="font-size: 1.2em; color:#FAF1DA">Select Payment method</h2>
+                                <br>
+
+
+                                <div class="switches">
+
+                                    <div style="cursor:pointer" id="mobile-switch" onclick="switchPayments('mobile-switch')">
+                                        <img style="border-radius:5px" src="imgs/mobile.jpg">
+                                    </div>
+
+                                    <div id="card-switch" style="cursor:pointer" onclick="switchPayments('card-switch')">
+                                        <img style="border-radius:5px" src="imgs/cards.jpg">
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <div class="mb-4">
+                                <form id="momo-form" style="display:none;">
+                                    <div class="form-group mb-4">
+                                        <!-- <label for="names" class="col-form-label text text-center">Name:</label> -->
+                                        <input style="border-radius: 45px; text-align: center;  border: 1px solid #A87B19; background-color: #050239; color: #FAF1DA;" type="text" placeholder="Your full names" required class="form-control" id="momo-names">
+                                    </div>
+
+                                    <div class="form-group mb-4">
+                                        <!-- <label for="phone-number" class="col-form-label text-center">Phone Number: (Mobile Money) : 07XXX</label> -->
+                                        <input style="border-radius: 45px; text-align: center;   border: 1px solid #A87B19; background-color: #050239; color: #FAF1DA;" type="text" class="form-control" placeholder="Mobile Money Number:  07XXXX" id="phone-number">
+
+                                    </div>
+
+
+                                    <div class="footer_btn mt-3">
+                                        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                                        <button id="momo-vote-btn" type="button" onclick="voteNow()" class="btn btn-block btn-primary download-btn1">Vote</button>
+
+                                        <div style="display:none" id="vote_modal_spinner" class="spinner-border text-primary" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <form style="display: none;" id="card-form">
+                                    <div class="form-group mb-4">
+                                        <!-- <label for="names" class="col-form-label text text-center">Name:</label> -->
+                                        <input style="border-radius: 45px; text-align: center;  border: 1px solid #A87B19; background-color: #050239; color: #FAF1DA;" type="text" placeholder="Your full names" required class="form-control" id="momo-names-card">
+                                    </div>
+
+                                    <div class="form-group mb-4">
+
+                                        <input style="border-radius: 45px; text-align: center;   border: 1px solid #A87B19; background-color: #050239; color: #FAF1DA;" type="text" class="form-control" placeholder="Email" id="email-card">
+
+                                    </div>
+
+
+                                    <div class="footer_btn mt-3">
+                                        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                                        <button id="card-vote-btn" type="button" onclick="voteNowCard()" class="btn btn-block btn-primary download-btn1">Vote</button>
+
+                                        <div style="display:none" id="vote_card_modal_spinner" class="spinner-border text-primary" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </section>
+                        <section>
+                            <div class="text-center">
+                                <small style="color: #716D64; font-size: xx-small;"> &copy; 2021 Royal Gospel Music Ltd, All Rights Reserved.</small>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div style="display: none;" class="modal-boday" id="modal-body-card" style="height:100vh;">
+
+                        <span>
+                            <iframe id="flutter-iframe" src="" >
+
+                            </iframe>
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </main>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const status = urlParams.get('status');
+
+        if (status == "successful") {
+            new swal('Thank you!',
+                'Voting Successful, looking forward to the main event on 12th Dec 2021 🤩',
+                'success'
+            );
+        } else if (status == "cancelled") {
+            new swal(
+                '🙁️',
+                'Sorry the transaction failed',
+                'warning'
+            );
+
+        }
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script>
+        // document.getElementById('vote_button').style.display = 'none';
+        let categories;
+        let all_cateogries = [];
+        localStorage.removeItem("all_categories")
+        axios.get('https://api.royalgospelmusic.com/categories/get_all?version=3.0')
+            .then(response => {
+                // console.log(response)
+                categories = response.data.categories;
+
+                // console.table(categories);
+                for (category of categories) {
+                    all_cateogries.push(category.id);
+
+                    let category_nominees = category.nominees;
+                    let nominees_html = '';
+                    for (nominee of category_nominees) {
+
+
+                        nominees_html += ` <div style="" class="index_article1_a12 mb-3">
+                <div id="${category.id}">
+                    <img src="${nominee.photo}" style="width:80px; height:80px; object-fit:cover;  border: 1px solid #FBD263; border-radius:50%">
+                    <div class="ml-2">
+                        <small style="font-size:14px;">${nominee.name}</small>
+                    </div>
+                </div>
+
+                <div class="input-checkbox">
+              <p style="color:#FBD263"><b>${nominee.winner}</b></p>
+                </div>
+            </div>`;
+                    }
+
+                    document.getElementById('all_categories').innerHTML += `
+<div data-aos="fade-up" data-aos-duration="600" style="border:2px solid #FBD263; padding:10px; border-radius: 20px; background-color: #050239;" class="container mb-4">
+            <h6 class="text-center mb-4 mt-3" style="color:#DFB951; font-weight:bold;">${category.position}. ${category.title}</h6>
+            <!-- <br> -->
+            ${nominees_html}
+
+        </div>
+        
+
+`;
+                    document.getElementById('category_spinner').style.display = 'none';
+                    // document.getElementById('vote_button').style.display = 'flex';
+                    // document.getElementById('vote_button').style.display = 'block';
+
+
+                }
+
+
+                localStorage.setItem("all_categories", JSON.stringify(all_cateogries));
+
+
+
+
+            })
+            .catch(error => console.log(error))
+        let vote_data = [];
+        let categories_voted = [];
+
+
+        function onSelectNominee(category, nominee) {
+
+
+            //   if(categories_voted.length == 32){
+            //       document.getElementById('vote_button').disabled = false;
+            //   }
+
+            //   if(categories_voted.length < 32){
+            //     // new Swal("please select atleast one nominee in each category");
+            //          new swal({
+            //     title: 'Select a nominee in each category ',
+            //     text: 'In order to vote successfully, please ensure that you select a nominee in each of the 32 categories ',
+
+            // });
+            //   }else{
+            //       document.getElementById('vote_button').disabled = false;
+            //   }
+
+            let current_unvoted = JSON.parse(localStorage.getItem("all_categories"));
+            //   console.table(current_unvoted);
+
+            let index_o = current_unvoted.indexOf(`${category}`);
+            //   console.log(`the index is haaa ${index_o}`)
+            if (index_o > -1) {
+                //   alert("we are here")
+                current_unvoted.splice(index_o, 1);
+
+                localStorage.setItem("all_categories", JSON.stringify(current_unvoted));
+
+            }
+
+
+
+            let category_index = categories_voted.indexOf(category);
+            // console.log(category_index);
+            if (category_index > -1) {
+
+
+                // the user has selected for this category
+                // check for its position and replace with new data
+                // also as you do this look for the checked input and uncheck it
+                // just look for the checked nominee
+                // if is the same uncheck
+                // if different uncheck the old and check this one
+                // then update the vote data
+                // remove the vote object using the index
+                //
+
+                // this unchecks all
+                let checkboxes = document.getElementsByName(category);
+                for (var i = 0, n = checkboxes.length; i < n; i++) {
+                    checkboxes[i].checked = false;
+
+                }
+
+                // then it checks the selected value
+                document.getElementById(nominee).checked = true;
+
+
+
+
+
+
+                vote_data.splice(category_index, 1);
+                vote_data.push({
+                    "category_id": category,
+                    "nominee_id": nominee
+                });
+            } else {
+                categories_voted.push(category);
+                vote_data.push({
+                    "category_id": category,
+                    "nominee_id": nominee
+                });
+            }
+            // console.table(categories_voted);
+            // console.table(vote_data);
+
+
+
+
+
+
+
+        }
+
+
+        function switchPayments(active_method) {
+
+            if (active_method == "card-switch") {
+                // add class to card div
+                // remove class from momo div
+                document.getElementById("voting-text").innerHTML = "Voting with other methods costs $1 only."
+                document.getElementById("card-switch").classList.add('active-switch');
+                document.getElementById("mobile-switch").classList.remove('active-switch');
+
+                // show card form
+                // hide mobile form
+
+                document.getElementById('card-form').style.display = "block";
+                document.getElementById('momo-form').style.display = "none";
+            } else {
+                document.getElementById("voting-text").innerHTML = "Voting with Mobile Money costs UGX 500 only."
+                document.getElementById("card-switch").classList.remove('active-switch');
+                document.getElementById("mobile-switch").classList.add('active-switch')
+
+                // hide card form
+                // show mobile form
+                document.getElementById('card-form').style.display = "none";
+                document.getElementById('momo-form').style.display = "block";
+            }
+
+        }
+
+        function voteNow() {
+
+
+
+            document.getElementById('vote_modal_spinner').style.display = 'block';
+            document.getElementById('momo-vote-btn').setAttribute("disabled", "true");
+            new swal({
+                title: 'Vote transaction initiated',
+                text: 'please complete the transaction with your pin',
+            })
+            swal.showLoading()
+
+            let phone = document.getElementById('phone-number').value;
+            let email = document.getElementById('momo-names').value;
+            let data = {
+                "user_id": phone,
+                "names": email,
+                "votes": vote_data
+            }
+            axios.post('https://api.royalgospelmusic.com/awards/vote', data)
+                .then(function(response) {
+                    // console.log(response);
+                    document.getElementById('vote_modal_spinner').style.display = 'none';
+                  document.getElementById('momo-vote-btn').disabled = false;
+
+                    if (response.data.success == true) {
+                        new swal(
+                            'Thank you!',
+                            'Voting Successful, looking forward to the main event on 12th Dec 2021 🤩',
+                            'success'
+                        )
+                    } else {
+                        if (response.data.message == "USER_ALREADY_VOTED") {
+                            new swal(
+                                '🤦🏾‍♂️',
+                                'Sorry you already voted!, We are looking forward to the main event on 12th Dec 2021. Shalom!',
+                                'warning'
+                            )
+                        } else if (response.data.message == "TRANSACTION_TIMEOUT") {
+                            new swal(
+                                '🙁️',
+                                'Sorry, the transaction Timed Out',
+                                'warning'
+                            )
+                        } else if (response.data.message == "TRANSACTION_FAILED") {
+                            new swal(
+                                '🙁️',
+                                'Sorry the transaction failed, please make sure you have more than UGX 500 on your account balance.',
+                                'warning'
+                            )
+                        }
+                    }
+
+                    // document.location.reload();
+                })
+        }
+
+
+        function voteNowCard() {
+
+
+            // hide momo body 
+            // document.getElementById('modal-body').style.display = "none";
+
+            // document.getElementById('modal-body-card').style.display = "block";
+
+
+            document.getElementById('vote_card_modal_spinner').style.display = 'block';
+            document.getElementById('card-vote-btn').setAttribute("disabled", "true");
+
+
+
+            let names = document.getElementById('momo-names-card').value;
+            let email = document.getElementById('email-card').value;
+            let data = {
+                "user_id": email,
+                "names": names,
+                "votes": vote_data
+            }
+            axios.post('https://api.royalgospelmusic.com/awards/vote_card', data)
+                .then(function(response) {
+                    console.log(response);
+                    document.getElementById('vote_card_modal_spinner').style.display = 'none';
+                    document.getElementById('card-vote-btn').setAttribute("disabled", "false");
+
+                    if (response.data.success == true) {
+                        // new swal(
+                        //     'Thank you!',
+                        //     'Voting Successful, looking forward to the main event on 12th Dec 2021 🤩',
+                        //     'success'
+                        // )
+                        // document.getElementById('modal-body-card').style.display = 'block';
+                        window.open(response.data.momo_processor.data.link);
+                        // document.getElementById('flutter-iframe').src = response.data.momo_processor.data.link;
+                    } else {
+                        if (response.data.message == "USER_ALREADY_VOTED") {
+                            new swal(
+                                '🤦🏾‍♂️',
+                                'Sorry you already voted!, We are looking forward to the main event on 12th Dec 2021. Shalom!',
+                                'warning'
+                            )
+                        } else if (response.data.message == "TRANSACTION_TIMEOUT") {
+                            new swal(
+                                '🙁️',
+                                'Sorry the transaction, Timed Out',
+                                'warning'
+                            )
+                        }
+                    }
+
+                    // document.location.reload();
+                })
+        }
+
+        function checkVote() {
+
+            
+            let unvoted = JSON.parse(localStorage.getItem("all_categories"));
+
+            // let not_voted_categories = [...all_cateogries];
+            if (categories_voted.length < 1) {
+                let message = `Please atleast vote a nominee in one category`
+                // if (categories_voted.length == 31) {
+                //     message = `Please select a nominee in category ${[...unvoted]} `;
+                // } else {
+                //     message = `Please select a nominee in categories ${[...unvoted]} `;
+                // }
+                new swal({
+                    title: 'Just a minute, 🙋🏾‍♂️',
+                    text: `${message}`,
+                })
+
+
+            } else {
+                document.getElementById('trigger_vote').click();
+            }
+
+        }
+    </script>
+    
+          <!--<input style="width:1.2em; height:1.2em; background-color:yellow;" border-radius: 0.25em; type="checkbox" id="${nominee.id}" name="${category.id}" value="${nominee.id}" onclick=(onSelectNominee(${category.id},${nominee.id}))>-->
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+
+</html>
